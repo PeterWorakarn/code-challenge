@@ -51,12 +51,10 @@ const cutTheRopes = (data: number[]) => {
   // 3: find lowest value
   // 4: reduce all rope
   while (allRope.reduce((curr,acc) => curr + acc, 0) > 0) {
-    // find remaining rope
     const remainingRope = cutRemaining(allRope);
 
     allRemainingRope.push(remainingRope.length);
     
-    // find lowest value
     for (let index = 0; index < remainingRope.length; index++) {
       if (index === 0) {
         lowestValue = remainingRope[index];
@@ -65,13 +63,10 @@ const cutTheRopes = (data: number[]) => {
         lowestValue = remainingRope[index]
       }
     }
-    // console.info(lowestValue);
 
     allRope = cutRemaining(allRope.map((eachRope) => {
       return eachRope - lowestValue;
     }))
-
-    // console.info(allRope);
   }
 
   return allRemainingRope;
